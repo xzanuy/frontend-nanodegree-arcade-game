@@ -5,7 +5,8 @@ var Enemy = function(y,speed) {
     this.x = 1;
     this.y = y;
     this.width = 50;
-    this.height = 150;
+    this.height = 50;
+    this.speed = speed;
     
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -15,12 +16,17 @@ var Enemy = function(y,speed) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-  //  this.x += this.x * dt; 
+    this.x +=  this.speed * dt; 
     
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
 
+      if(this.x > 400){
+        this.x = 0;
+        this.speed = Math.floor((Math.random() * 100) + 50);
+        this.y = Math.floor((Math.random() * 300) + 1); 
+      }
       
 
 };
@@ -61,20 +67,29 @@ Player.prototype.update = function(dt) {
         this.y = 400;
     }
 
-    else if(this.y < 0){
-        this.y = 0;
+    else if(this.y < 10){
+        this.y = 400;
+        alert("You woooooooooon");
     }
 
 
-if (player.x < allEnemies[0].x + allEnemies[0].width &&
-             player.x + player.width > allEnemies[0].x &&
-             player.y < allEnemies[0].y + allEnemies[0].height &&
-             player.height + player.y > allEnemies[0].y){
-            console.log("collision");
+allEnemies.forEach(function(enemy){
+
+    if (player.x < enemy.x + enemy.width &&
+             player.x + player.width > enemy.x &&
+             player.y < enemy.y + enemy.height &&
+             player.height + player.y > enemy.y){
+          
+            player.x = 200;
+            player.y = 400;
+            console.log("collision with" + i)
+
+
          }
-    
-       
-    // You should multiply any movement by the dt parameter
+});
+
+
+    // You should multiply  any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
 };
@@ -88,22 +103,22 @@ Player.prototype.handleInput = function(allowedKeys){
     
     switch(allowedKeys){
         case "left":
-        this.x = this.x - 100;
+        this.x = this.x - 75;
         console.log(this.x);
         break;
 
         case "up":
-        this.y = this.y - 100;
+        this.y = this.y - 75;
         console.log(this.y);
         break; 
 
         case "right":
-        this.x = this.x + 100;
+        this.x = this.x + 75;
         console.log(this.x);
         break;
 
         case "down":
-        this.y = this.y + 100;
+        this.y = this.y + 75;
         console.log(this.y);
         break;
 
@@ -120,9 +135,15 @@ Player.prototype.checkCollision = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-array.push(new Enemy(50))
+
 var player = new Player();
 
+for(var i = 0; i<3; i++){
+    allEnemies.push(new Enemy(Math.floor((Math.random() * 300) + 1), Math.floor((Math.random() * 100) + 50)));    
+    console.log("one enemi mor");
+
+
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
