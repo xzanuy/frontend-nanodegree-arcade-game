@@ -1,3 +1,6 @@
+var TILE_WIDTH = 101,
+    TILE_HEIGHT = 83;
+
 // Enemies our player must avoid
 var Enemy = function(y,speed) {
     // Variables applied to each of our instances go here,
@@ -82,8 +85,7 @@ allEnemies.forEach(function(enemy){
           
             player.x = 200;
             player.y = 400;
-            console.log("collision with" + i)
-
+            console.log("collision with" + i);
 
          }
 });
@@ -103,22 +105,22 @@ Player.prototype.handleInput = function(allowedKeys){
     
     switch(allowedKeys){
         case "left":
-        this.x = this.x - 75;
+        this.x = this.x - TILE_WIDTH;
         console.log(this.x);
         break;
 
         case "up":
-        this.y = this.y - 75;
+        this.y = this.y - TILE_HEIGHT;
         console.log(this.y);
         break; 
 
         case "right":
-        this.x = this.x + 75;
+        this.x = this.x + TILE_WIDTH;
         console.log(this.x);
         break;
 
         case "down":
-        this.y = this.y + 75;
+        this.y = this.y + TILE_HEIGHT;
         console.log(this.y);
         break;
 
