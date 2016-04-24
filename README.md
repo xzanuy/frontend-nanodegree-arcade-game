@@ -12,6 +12,10 @@ Download all the files and run the index.html. The game will start automatically
 
 Your goal is to reach the water  but be careful with the frogs, if they touch you , you'll be starting from the begining.
 
+- player controls:
+arrow keys(https://image.freepik.com/free-vector/arrow-keys-vectors_637061.jpg "Arrow Keys")
+ -Use the arrow keys to move the player in four directions
+
 ##Liscense
 
 MIT License
